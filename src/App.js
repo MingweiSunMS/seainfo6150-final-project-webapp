@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Switch, Route, Link } from "react-router-dom";
 
 import Home from "./Home/Home.jsx";
@@ -6,6 +6,9 @@ import Foo from "./Foo/Foo.jsx";
 import Bar from "./Bar/Bar.jsx";
 import Baz from "./Baz/Baz.jsx";
 import Error from "./Error/Error.jsx";
+import { isEmpty } from "lodash";
+import style from "./App.module.css"
+import AboutUs from "./AboutUs/AboutUs.jsx"
 
 // here is some external content. look at the /baz route below
 // to see how this content is passed down to the components via props
@@ -17,11 +20,25 @@ const externalContent = {
 };
 
 function App() {
-  return (
+  const [fetchedData, setFetchedData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      let responseJson;
+      const response = await fetch("http://demo1390455.mockable.io/articles");
+      responseJson = await response.json();
+      setFetchedData(responseJson);
+    };
+
+    if (isEmpty(fetchedData)) {
+      fetchData();
+    }
+  }, [fetchedData]);
+
+  return isEmpty(fetchedData) ? null:(
     <>
       <header>
         <nav>
-          <ul>
+          <ul class={style.navTop}>
             {/* these links should show you how to connect up a link to a specific route */}
             <li>
               <Link to="/">Home</Link>
@@ -34,6 +51,9 @@ function App() {
             </li>
             <li>
               <Link to="/baz">Baz</Link>
+            </li>
+            <li>
+              <Link to="/AboutUs">About Us</Link>
             </li>
           </ul>
         </nav>
@@ -61,6 +81,7 @@ function App() {
           exact
           render={() => <Baz content={externalContent} />}
         />
+        <Route path="/aboutUs" exact component={AboutUs}/>
         <Route component={Error} />
       </Switch>
     </>
