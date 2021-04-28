@@ -1,5 +1,4 @@
 import React from 'react'
-import Form from "../Form/Form";
 import blog from "../images/blog.jpg";
 import style from "./Home.module.css";
 
