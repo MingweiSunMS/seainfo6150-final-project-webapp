@@ -1,19 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import BlogListContent from "../BlogListContent/BlogListContent";
 import { Switch, Route, Link } from "react-router-dom";
-import style from "./BlogList.module.css"
+import style from "./AuthorList.module.css"
 
 const BlogList = (props) => {
   
   
     return (
     <div>
+        <h2>Here are our great author who provide their blogs</h2>
         <ul>
           {props.blogs.map((blog) => (
-            <Link to={`/BlogListContent/${blog}`}>
-                    <li key={blog.slug}>{blog.title}</li>
-            </Link>
+            <li key={blog.slug}>{blog.author}</li>
           ))}
         </ul>
     </div>

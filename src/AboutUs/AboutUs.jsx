@@ -12,10 +12,10 @@ const AboutUs = () =>{
                     Search the blog by author's name
                 </li>
                 <li>
-                    Search the blog by title
+                    Read all the blog title
                 </li>
                 <li>
-                    Search the blog by data and time
+                    Search the blog by data and time(In Progress)
                 </li>
             </ol>
             <p>This project is created by Mingwei Sun.</p>

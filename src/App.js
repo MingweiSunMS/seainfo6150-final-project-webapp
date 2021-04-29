@@ -7,6 +7,8 @@ import { isEmpty } from "lodash";
 import style from "./App.module.css"
 import AboutUs from "./AboutUs/AboutUs.jsx"
 import BlogList from "./BlogList/BlogList.jsx"
+import AuthorList from "./AuthorList/AuthorList.jsx"
+import BlogListContent from "./BlogListContent/BlogListContent.jsx";
 
 function App() {
   const [fetchedData, setFetchedData] = useState({});
@@ -40,6 +42,9 @@ function App() {
               <Link to="/blogList">Blog List</Link>
             </li>
             <li>
+              <Link to="/authorList">Author List</Link>
+            </li>
+            <li>
               <Link to="/aboutUs">About Us</Link>
             </li>
           </ul>
@@ -52,6 +57,9 @@ function App() {
         <Route path="/aboutUs" exact component={AboutUs}/>
         <Route exact path="/blogList">    
           <BlogList blogs={Object.values(fetchedData)}/>
+        </Route>
+        <Route exact path="/authorList">    
+          <AuthorList blogs={Object.values(fetchedData)}/>
         </Route>
       </Switch>
     </>
